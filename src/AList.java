@@ -245,6 +245,14 @@ public class AList implements ListInterface{
 		boolean arrayNotFull = mylist.isFull();
 		System.out.println(arrayNotFull); // should be false, the array is not full
 		
+		mylist.add("dodge");
+		mylist.add("fiat");
+		mylist.add("volvo");
+		
+		boolean arrayIsFull = mylist.isFull();
+		mylist.display();
+		System.out.println(arrayIsFull); // should be true, array has 8 items
+		
 	}
 	
 } // end AList
