@@ -88,6 +88,7 @@ public class AList implements ListInterface{
 		{
 			items[index] = null;
 		}
+		numItems = 0;
 	} // end clear
 	
 	public boolean replace(int givenPosition, Object newEntry)
@@ -188,6 +189,7 @@ public class AList implements ListInterface{
 	 * A driver program to test out the methods
 	 */
 	public static void main(String args[]) {
+		
 		AList mylist = new AList(8);
 		mylist.add("apple");
 		mylist.add("pear");
@@ -195,62 +197,70 @@ public class AList implements ListInterface{
 		mylist.add("strawberry");
 		mylist.add("blueberry");
 		
-		// prints apple, pear, banana, strawberry, blueberry
+		System.out.println("Expected: apple, pear, banana, strawberry, blueberry");
 		mylist.display();
 		
 		mylist.add(3, "melon");
-		// prints apple, pear, melon, banana, strawberry, blueberry
+		System.out.println("Expected: apple, pear, melon, banana, strawberry, blueberry");
 		mylist.display();
 		
 		mylist.add("kiwi");
-		// prints apple, pear, melon, banana, strawberry, blueberry, kiwi
+		System.out.println("Expected: apple, pear, melon, banana, strawberry, blueberry, kiwi");
 		mylist.display();
 		
 		mylist.remove(5); // removes strawberry(#5), the list starts at 1 (one) not zero
-		// prints apple, pear, melon, banana, blueberry, kiwi
-		mylist.display();
-		
 		mylist.remove(5); // removes blueberry(#5), the list starts at 1 (one) not zero
-		// prints apple, pear, melon, banana, kiwi
+		System.out.println("Expected: apple, pear, melon, banana, kiwi");
 		mylist.display();
 		
 		Object fruit = mylist.getEntry(2);
-		System.out.println(fruit); // prints pear
+		System.out.println("Expected: pear");
+		System.out.println(fruit);
 		System.out.println();
 		
 		mylist.clear();
 		mylist.display();
+		System.out.println("Array cleared, display called, nothing prints but this " +
+				"statement that comes after calling display.");
+		System.out.println("");
 				
-		mylist.replace(1, "ford");
-		mylist.replace(2, "honda");
-		mylist.replace(3, "nissan");
-		mylist.replace(4, "subaru");
-		mylist.replace(5, "chevy");
+		mylist.add(1, "ford");
+		mylist.add(2, "honda");
+		mylist.add(3, "nissan");
+		mylist.add(4, "subaru");
+		mylist.add(5, "chevy");
 		
+		System.out.println("Expected: ford, honda, nissan, subaru, chevy");
 		mylist.display();
 		System.out.println();
 		
-		boolean inThere = mylist.contains("nissan");
-		System.out.println(inThere); // should be true
-		
-		boolean notInThere = mylist.contains("watermelon");
-		System.out.println(notInThere); // should be false
-		
+		boolean inThere = mylist.contains("nissan"); // should be true
+		boolean notInThere = mylist.contains("watermelon"); // should be false
 		int result = mylist.getLength(); // should be 5
+		System.out.println("Expected: true, false, 5");
+		System.out.println(inThere);
+		System.out.println(notInThere);
 		System.out.println(result);
+		System.out.println();
 		
 		boolean arrayNotEmpty = mylist.isEmpty();
+		System.out.println("Expected: false");
 		System.out.println(arrayNotEmpty); // should be false, the array is not empty
+		System.out.println();
 		
 		boolean arrayNotFull = mylist.isFull();
+		System.out.println("Expected: false");
 		System.out.println(arrayNotFull); // should be false, the array is not full
+		System.out.println();
 		
 		mylist.add("dodge");
 		mylist.add("fiat");
 		mylist.add("volvo");
 		
 		boolean arrayIsFull = mylist.isFull();
+		System.out.println("Expected: ford, honda, nissan, subaru, chevy, dodge, fiat, volvo");
 		mylist.display();
+		System.out.println("Expected: true");
 		System.out.println(arrayIsFull); // should be true, array has 8 items
 		
 	}
